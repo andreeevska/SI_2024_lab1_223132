@@ -1,0 +1,186 @@
+4. Креирам нов локален директориум на мојот компјутер и потоа го иницијализирам да биде Git директориум
+mkdir SI_2024_lab1_223132
+cd SI_2024_lab1_223132
+git init
+
+5. Во следниот чекор го поврзувам мојот локален репозиториум со оддалечениот  (remote) на GitHub
+
+C:\Users\WIN10\SI_2024_lab1_223132>git remote add origin https://github.com/andreeevska/SI_2024_lab1_223132.git
+За да проверам дали успешно сум ги поврзала ја повикувам следната команда:
+C:\Users\WIN10\SI_2024_lab1_223132>git remote -v
+Излезот од оваа команда е следен:
+
+origin  https://github.com/andreeevska/SI_2024_lab1_223132.git (fetch)
+origin  https://github.com/andreeevska/SI_2024_lab1_223132.git (push)
+
+6. Прво креирам README.md датотека со командата notepad README.md , а потоа:
+
+C:\Users\WIN10\SI_2024_lab1_223132>git add README.md
+C:\Users\WIN10\SI_2024_lab1_223132>git commit -m "Initial commit"
+[master (root-commit) 4ac2b08] Initial commit
+ 1 file changed, 4 insertions(+)
+ create mode 100644 README.md
+
+7. Откако ги преземав и сместив во соодветниот директориум , ги ставам на "сцена" фајловите и правам commit
+C:\Users\WIN10\SI_2024_lab1_223132>git add SILab1Main.java SILab1_1.java SILab1_2.java
+C:\Users\WIN10\SI_2024_lab1_223132>git commit -m "Add starter code"
+[master fb829fc] Add starter code
+ 3 files changed, 47 insertions(+)
+ create mode 100644 SILab1Main.java
+ create mode 100644 SILab1_1.java
+ create mode 100644 SILab1_2.java
+
+8. Со цел да ги синхронизирам  сите гранки со оддалечениот репозиториум ги вршам следните команди:
+C:\Users\WIN10\SI_2024_lab1_223132>git branch -M master
+C:\Users\WIN10\SI_2024_lab1_223132>git push -u origin master
+
+
+9. За да креираме гранка ја користиме командата git branch
+C:\Users\WIN10\SI_2024_lab1_223132>git branch bug1
+C:\Users\WIN10\SI_2024_lab1_223132>git branch bug2
+
+10. Со checkout се префрламе на гранката bug1
+C:\Users\WIN10\SI_2024_lab1_223132>git checkout bug1
+Switched to branch 'bug1'
+
+11. За да ја поправам грешката ја отварам датотеката, го заменувам некоректниот израз "==" со "!="
+откако промените се зачувани правам commit
+C:\Users\WIN10\SI_2024_lab1_223132>notepad SILab1_1.java
+C:\Users\WIN10\SI_2024_lab1_223132>git add SILab1_1.java
+C:\Users\WIN10\SI_2024_lab1_223132>git commit -m "Fix wrong condition in filterOddLengthStrings"
+[bug1 cef74dd] Fix wrong condition in filterOddLengthStrings
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+12.
+C:\Users\WIN10\SI_2024_lab1_223132>git checkout bug2
+Switched to branch 'bug2'
+
+13. Ја отварам датотеката , заменувам "<" со ">=" , правам commit
+C:\Users\WIN10\SI_2024_lab1_223132>git add SILab1_2.java
+C:\Users\WIN10\SI_2024_lab1_223132>git commit -m "Fix wrong condition in makeBigStringFrom"
+[bug2 49acdc4] Fix wrong condition in makeBigStringFrom
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+14.
+C:\Users\WIN10\SI_2024_lab1_223132>git checkout bug1
+Switched to branch 'bug1'
+
+15.
+
+C:\Users\WIN10\SI_2024_lab1_223132>notepad SILab1Main.java
+C:\Users\WIN10\SI_2024_lab1_223132>git add SILab1Main.java
+C:\Users\WIN10\SI_2024_lab1_223132>git commit -m "Call method filterOddLengthStrings in main class"
+[bug1 ac3ea0f] Call method filterOddLengthStrings in main class
+ 1 file changed, 1 insertion(+)
+
+16.
+C:\Users\WIN10\SI_2024_lab1_223132>git checkout bug2
+Switched to branch 'bug2'
+
+17.
+
+C:\Users\WIN10\SI_2024_lab1_223132>notepad SILab1Main.java
+C:\Users\WIN10\SI_2024_lab1_223132>git add SILab1Main.java
+C:\Users\WIN10\SI_2024_lab1_223132>git commit -m "Call method makeBigStringFrom in main class"
+[bug2 51a1855] Call method makeBigStringFrom in main class
+ 1 file changed, 1 insertion(+)
+
+18.
+C:\Users\WIN10\SI_2024_lab1_223132>git push --all origin
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 1.32 KiB | 450.00 KiB/s, done.
+Total 12 (delta 7), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (7/7), completed with 4 local objects.
+To https://github.com/andreeevska/SI_2024_lab1_223132.git
+ * [new branch]      bug1 -> bug1
+ * [new branch]      bug2 -> bug2
+
+
+19.
+C:\Users\WIN10\SI_2024_lab1_223132>git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+20.
+C:\Users\WIN10\SI_2024_lab1_223132>git merge bug1
+Updating fb829fc..ac3ea0f
+Fast-forward
+ SILab1Main.java | 1 +
+ SILab1_1.java   | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+21.
+C:\Users\WIN10\SI_2024_lab1_223132>git push --all origin
+
+22.
+C:\Users\WIN10\SI_2024_lab1_223132>git checkout bug2
+Switched to branch 'bug2'
+
+23.
+C:\Users\WIN10\SI_2024_lab1_223132>git rebase master
+Auto-merging SILab1Main.java
+CONFLICT (content): Merge conflict in SILab1Main.java
+error: could not apply 51a1855... Call method makeBigStringFrom in main class
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 51a1855... Call method makeBigStringFrom in main class
+
+Бидејќи ми јави порака за конфликт со цел успешно да заврши rebase ја поправам грешката во фајлот SILab1Main.java
+со тоа што ги ставам повиците на функциите едно под друго во различни линии код.
+
+C:\Users\WIN10\SI_2024_lab1_223132>notepad SILab1Main.java
+C:\Users\WIN10\SI_2024_lab1_223132>git add SILab1Main.java
+C:\Users\WIN10\SI_2024_lab1_223132>git rebase --continue
+[detached HEAD eb935b6] Conflict fixed
+ 1 file changed, 1 insertion(+)
+Successfully rebased and updated refs/heads/bug2.
+
+24. C:\Users\WIN10\SI_2024_lab1_223132>git checkout master
+
+25.
+C:\Users\WIN10\SI_2024_lab1_223132>git merge bug2
+Updating ac3ea0f..eb935b6
+Fast-forward
+ SILab1Main.java | 1 +
+ SILab1_2.java   | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+26.
+C:\Users\WIN10\SI_2024_lab1_223132>git push --all origin
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 640 bytes | 640.00 KiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 3 local objects.
+To https://github.com/andreeevska/SI_2024_lab1_223132.git
+   ac3ea0f..eb935b6  master -> master
+ ! [rejected]        bug2 -> bug2 (non-fast-forward)
+error: failed to push some refs to 'https://github.com/andreeevska/SI_2024_lab1_223132.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+27.
+C:\Users\WIN10\SI_2024_lab1_223132>git push --force origin bug2
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/andreeevska/SI_2024_lab1_223132.git
+ + 51a1855...eb935b6 bug2 -> bug2 (forced update)
+
+28. Ја креирам датотеката "logs.txt" со помош на операторот ">" каде ги запишувам досегашните гит логови,
+потоа ја прикачувам оваа текстуална датотека и го правам последниот commit :)
+C:\Users\WIN10\SI_2024_lab1_223132>git log > logs.txt
+C:\Users\WIN10\SI_2024_lab1_223132>git add logs.txt
+C:\Users\WIN10\SI_2024_lab1_223132>git add 223132.txt
+C:\Users\WIN10\SI_2024_lab1_223132>git commit -m "Final commit"
+
+29. Со оваа команда ги синхронизирам сите гранки 
+git push --all origin
+
